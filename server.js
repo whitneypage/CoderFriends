@@ -69,8 +69,13 @@ app.get('/api/github/following', requireAuth, function(req, res) {
 		})
 });
 
-app.get('api/github/:username/activity', function(req, res) {
-	console.log(req.body);
+app.get('api/github/:username/activity',requireAuth, function(req, res) {
+	github.user.getFriendActivity ({
+		user: req.params.username;
+	}, function(err, response) {
+		res.json(response)
+	})
+	
 
 });
 

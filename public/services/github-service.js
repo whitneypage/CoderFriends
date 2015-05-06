@@ -10,10 +10,14 @@ app.service('githubService', function($http) {
 	}
 
      this.getFriendActivity = function(username) {
+     	var q = q.defer();
      	var url: 'https://api.github.com/users/' + username+ '/events';
      	return $http ({
      		method: 'GET',
      		url: url
+     	}). then (function(res) {
+     		
+
      	})
      }
 
