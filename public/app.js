@@ -3,9 +3,6 @@ var app = angular.module('coderFriends', ['ngRoute']);
 app.config(function($routeProvider) {
 
 	$routeProvider
-	// .when('/', {
-	// 	templateUrl: '',
-	// })
 
 	.when('/home', {
 		templateUrl: 'templates/home.html',
@@ -20,6 +17,10 @@ app.config(function($routeProvider) {
 
 	.when('/friend/:github_username', {
 		templateUrl: 'templates/friend.html',
+		resolve: {
+			eventdata: function(githubService) {
+				return githubService.getFriendActivity($route.current.params.github_username);
+		}
 	})
 
    .otherwise ({
